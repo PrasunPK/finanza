@@ -6,10 +6,10 @@ var urlParse = require('url-parse');
 var bodyParser = require('body-parser');
 var pg = require('pg');
 
-var conString = 'pg://postgres:pass@localhost:5432/postgres'
+// var conString = 'pg://postgres:pass@localhost:5432/postgres'
 
-var client = new pg.Client(conString);
-client.connect();
+// var client = new pg.Client(conString);
+// client.connect();
 
 var users={};
 
