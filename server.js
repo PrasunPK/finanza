@@ -32,13 +32,29 @@ app.get('/', function(req, res){
 });
 
 app.get('/dashboard', function(req, res){
-	var data = getDashboard();
-	res.send(data);
+	var options = {
+    root: __dirname + '/public/',
+    dotfiles: 'deny',
+    headers: {
+        'x-timestamp': Date.now(),
+        'x-sent': true
+    }
+  };
+
+  var fileName = 'dashboard.html';
+  res.sendFile(fileName, options, function (err) {
+    if (err) {
+      console.log(err);
+      res.status(err.status).end();
+    }
+    else {
+      console.log('Sent:', fileName);
+    }
+  });
 });
 
 app.post('/login', function(req, res){
 	var url = req.body;
-	console.log(url);
 	if(url.username == 'admin' && url.password == '123')
 		res.redirect('/dashboard');
 	else
