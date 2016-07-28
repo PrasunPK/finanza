@@ -6,19 +6,24 @@ var urlParse = require('url-parse');
 var bodyParser = require('body-parser');
 var pg = require('pg');
 
-var config = {
-  user: process.env.OPENSHIFT_POSTGRESQL_DB_USERNAME || process.env.FINANZA_POSTGRESQL_DB_USERNAME, 
-  database: 'finanza',
-  password: process.env.OPENSHIFT_POSTGRESQL_DB_PASSWORD || process.env.FINANZA_POSTGRESQL_DB_PASSWORD,
-  port: process.env.OPENSHIFT_POSTGRESQL_DB_PORT || 5432,
-  max: 10,
-  idleTimeoutMillis: 30000
-};
+var pool;
+if(process.env.OPENSHIFT_POSTGRESQL_DB_USERNAME && process.env.OPENSHIFT_POSTGRESQL_DB_PASSWORD){
+  var conString = 'pg://' + process.env.OPENSHIFT_POSTGRESQL_DB_USERNAME + ':' + process.env.OPENSHIFT_POSTGRESQL_DB_PASSWORD + '@' + process.env.OPENSHIFT_POSTGRESQL_DB_HOST + ':' + process.env.OPENSHIFT_POSTGRESQL_DB_PORT + '/finanza';
+  pool = new pg.Client(conString);
+}else{
+  var config = {
+    user: process.env.FINANZA_POSTGRESQL_DB_USERNAME, 
+    database: 'finanza',
+    password: process.env.FINANZA_POSTGRESQL_DB_PASSWORD,
+    port: 5432,
+    max: 10,
+    idleTimeoutMillis: 30000
+  };
+  pool = new pg.Pool(config);
+}
 
-var pool = new pg.Pool(config);
-pool.connect();
+
 var users = {};
-
 
 var populateUsers = function(){
   pool.connect(function(err, client, done) {
