@@ -6,23 +6,43 @@ var urlParse = require('url-parse');
 var bodyParser = require('body-parser');
 var pg = require('pg');
 
-// var conString = 'pg://postgres:pass@localhost:5432/postgres'
+var config = {
+  user: process.env.OPENSHIFT_POSTGRESQL_DB_USERNAME || process.env.FINANZA_POSTGRESQL_DB_USERNAME, 
+  database: 'finanza',
+  password: process.env.OPENSHIFT_POSTGRESQL_DB_PASSWORD || process.env.FINANZA_POSTGRESQL_DB_PASSWORD,
+  port: process.env.OPENSHIFT_POSTGRESQL_DB_HOST || 5432,
+  max: 10,
+  idleTimeoutMillis: 30000
+};
 
-// var client = new pg.Client(conString);
-// client.connect();
+var pool = new pg.Pool(config);
+pool.connect();
+var users = {};
 
-var users={};
+
+var populateUsers = function(){
+  pool.connect(function(err, client, done) {
+        if(err) {
+          return console.error('error fetching client from pool', err);
+        }
+          client.query('SELECT * FROM user_details', function(err, result) {
+              if(!err)
+                users = result.rows;
+              else
+                return console.error('error running query', err);
+          });
+    });
+}
+populateUsers();
+
+var verifyUser = function (username, password) {
+    if(users[0].name == username && users[0].password == password)
+      return true;
+    return false;
+};
 
 var IP_ADDRESS = process.env.OPENSHIFT_NODEJS_IP;
 var PORT = process.env.OPENSHIFT_NODEJS_PORT || 4040;
-
-var getDashboard = function (){
-	var startHtml = "<html><head><title>Dashboard</title></head><body>";
-	var body = "<input type='text'><input type='text'><input type='text'>"
-	var endHtml = "</body></html>"
-
-	return (startHtml + body + endHtml);
-};
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('./public'));
@@ -55,12 +75,11 @@ app.get('/dashboard', function(req, res){
 
 app.post('/login', function(req, res){
 	var url = req.body;
-	if(url.username == 'admin' && url.password == '123')
+	if(verifyUser(url.username, url.password))
 		res.redirect('/dashboard');
 	else
 		res.send({status:false});
 });
-
 
 var server = http.createServer(app);
 server.listen(PORT,IP_ADDRESS);
