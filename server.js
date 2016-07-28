@@ -10,7 +10,7 @@ var config = {
   user: process.env.OPENSHIFT_POSTGRESQL_DB_USERNAME || process.env.FINANZA_POSTGRESQL_DB_USERNAME, 
   database: 'finanza',
   password: process.env.OPENSHIFT_POSTGRESQL_DB_PASSWORD || process.env.FINANZA_POSTGRESQL_DB_PASSWORD,
-  port: process.env.OPENSHIFT_POSTGRESQL_DB_HOST || 5432,
+  port: process.env.OPENSHIFT_POSTGRESQL_DB_PORT || 5432,
   max: 10,
   idleTimeoutMillis: 30000
 };
