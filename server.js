@@ -68,7 +68,8 @@ app.get('/dashboard', function(req, res){
             dotfiles: 'deny',
             headers: {
                 'x-timestamp': Date.now(),
-                'x-sent': true
+                'x-sent': true,
+                'x-user': req.session.user
             }
           };
 
