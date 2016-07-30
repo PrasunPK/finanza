@@ -12,6 +12,8 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="assets/js/dashboard.js"></script>
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -54,13 +56,13 @@
                             <div class="dropdown-menu dropdown-settings">
                                 <div class="media">
                                     <div class="media-body">
-                                        <h4 class="media-heading">Your name</h4>
+                                        <h4 class="media-heading" id="logged-in-user-name">Your name</h4>
                                         <h5>Admin or User</h5>
 
                                     </div>
                                 </div>
                                 <hr />
-                                <a href="login.html" class="btn btn-danger btn-sm">Logout</a>
+                                <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
                             </div>
                         </li>
 
@@ -105,38 +107,38 @@
             <div class="row">
                  <div class="col-md-3 col-sm-3 col-xs-6">
                     <div class="dashboard-div-wrapper bk-clr-one">
-                        <i  class="fa fa-venus dashboard-div-icon" ></i>
+                        <h1 class="display-3" id="current-balance">  </h1>
                         <div class="progress progress-striped active">
                            
 </div>
-                         <h5>Current Balance</h5>
+                         <h3 class="display-3">Current Balance</h3>
                     </div>
                 </div>
                  <div class="col-md-3 col-sm-3 col-xs-6">
                     <div class="dashboard-div-wrapper bk-clr-two">
-                        <i  class="fa fa-edit dashboard-div-icon" ></i>
+                        <h1 class="display-3" id="total-incomes">  </h1>
                         <div class="progress progress-striped active">
                            
 </div>
-                         <h5>Total incomes</h5>
+                         <h3 class="display-3">Total incomes</h3 class="display-3">
                     </div>
                 </div>
                  <div class="col-md-3 col-sm-3 col-xs-6">
                     <div class="dashboard-div-wrapper bk-clr-three">
-                        <i  class="fa fa-cogs dashboard-div-icon" ></i>
+                        <h1 class="display-3" id="total-expenses">  </h1>
                         <div class="progress progress-striped active">
                            
 </div>
-                         <h5>Total expenses</h5>
+                         <h3 class="display-3">Total expenses</h3 class="display-3">
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-6">
                     <div class="dashboard-div-wrapper bk-clr-four">
-                        <i  class="fa fa-bell-o dashboard-div-icon" ></i>
+                        <h1 class="display-3" id="yearly-turnover">  </h1>
                         <div class="progress progress-striped active">
                            
 </div>
-                         <h5>Yearly Turnover</h5>
+                         <h3 class="display-3">Yearly Turnover</h3 class="display-3">
                     </div>
                 </div>
 
