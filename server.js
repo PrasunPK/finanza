@@ -53,7 +53,7 @@ app.use(session({
   cookieName: 'session',
   secret: 'RANDOM',
   duration: 30 * 60 * 1000,
-  activeDuration: 5 * 60 * 1000,
+  activeDuration: 1 * 60 * 1000,
 }));
 app.use(morgan('combined'));
 
