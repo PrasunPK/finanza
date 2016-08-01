@@ -39,9 +39,13 @@ var populateUsers = function(){
 populateUsers();
 
 var verifyUser = function (username, password) {
-    if(users[0].name == username && users[0].password == password)
-      return true;
-    return false;
+  var authorized = false;
+    users.forEach(function(user){
+      if(user.name == username && user.password == password){
+        authorized = true;
+      }
+    });
+    return authorized;
 };
 
 var IP_ADDRESS = process.env.OPENSHIFT_NODEJS_IP;
@@ -69,7 +73,8 @@ app.get('/dashboard', function(req, res){
             headers: {
                 'x-timestamp': Date.now(),
                 'x-sent': true,
-                'x-user': req.session.user
+                'x-user': req.session.user,
+                'x-role': req.session.role
             }
           };
 
@@ -88,6 +93,10 @@ app.get('/dashboard', function(req, res){
 app.post('/login', function(req, res){
 	var url = req.body;
 	if(verifyUser(url.username, url.password)){
+    users.forEach(function(user){
+      if(user.name == url.username)
+        req.session.role = user.role;
+    });
     req.session.user = url.username;
     res.redirect('/dashboard');
   }
