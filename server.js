@@ -106,7 +106,12 @@ app.post('/login', function(req, res){
 });
 
 app.get('/logout',function(req, res){
-    req.session.reset();
+    var body = "some body";
+    res.removeHeader('x-user');
+    res.removeHeader('x-sent');
+    res.removeHeader('x-role');
+    res.removeHeader('x-timestamp');
+    req.session.user = null;
     res.redirect('/');
 })
 
