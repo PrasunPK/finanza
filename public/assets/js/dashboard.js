@@ -7,16 +7,17 @@ var onPageReady = function (argument) {
 		$('#yearly-turnover').html(balances[0].turnover  + ' &#x20b9;');
 	});
 	var request = new XMLHttpRequest;
-	request.open('GET', '/dashboard', true);
+	request.open('GET', '/header', true);
 	request.onload = function(){
 	  var username= request.getResponseHeader('x-user');
 	  var role= request.getResponseHeader('x-role');
 	  $('#logged-in-user-name').html(username);
 	  $('#role').html(role);
+
+
+	  console.log(username, role);
 	};
 	request.send();
-
-
 }
 
 $(document).ready(onPageReady);

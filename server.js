@@ -63,7 +63,7 @@ app.use(session({
     name: uuid.v1(),
     proxy: false,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true
 }));
 app.use(morgan('combined'));
 
@@ -76,15 +76,10 @@ app.get('/', function(req, res){
 
 app.get('/dashboard', function(req, res){
       if (sess && sess.user){
+        console.log("current session :", sess);
         	var options = {
             root: __dirname + '/public/',
             dotfiles: 'deny',
-            headers: {
-                'x-timestamp': Date.now(),
-                'x-sent': true,
-                'x-user': sess.user,
-                'x-role': sess.role
-            }
           };
 
           var fileName = 'dashboard.html';
@@ -97,6 +92,14 @@ app.get('/dashboard', function(req, res){
       }else{
         res.redirect('/');
       }
+});
+
+app.get('/header',function(req,res){
+      res.setHeader('x-timestamp', Date.now());
+      res.setHeader('x-sent', true);
+      res.setHeader('x-user', sess.user);
+      res.setHeader('x-role', sess.role);
+      res.send();
 });
 
 app.post('/login', function(req, res){
