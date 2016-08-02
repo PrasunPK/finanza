@@ -2,11 +2,13 @@ var http = require('http');
 var express = require('express');
 var app = express();
 var queryString = require('querystring');
+var cookieParser = require('cookie-parser');
 var urlParse = require('url-parse');
 var bodyParser = require('body-parser');
 var pg = require('pg');
-var session = require('client-sessions');
 var morgan = require('morgan')
+
+var session = require('express-session');
 
 var pool;
 if(process.env.OPENSHIFT_POSTGRESQL_DB_USERNAME && process.env.OPENSHIFT_POSTGRESQL_DB_PASSWORD){
@@ -51,30 +53,30 @@ var verifyUser = function (username, password) {
 var IP_ADDRESS = process.env.OPENSHIFT_NODEJS_IP;
 var PORT = process.env.OPENSHIFT_NODEJS_PORT || 4040;
 
+app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('./public'));
-app.use(session({
-  cookieName: 'session',
-  secret: 'RANDOM',
-  duration: 30 * 60 * 1000,
-  activeDuration: 1 * 60 * 1000,
-}));
+app.use(session({secret: 'RANDOM'}));
 app.use(morgan('combined'));
 
+var sess = {role:undefined, user:undefined};
+
 app.get('/', function(req, res){
+  sess = req.session;
 	res.render('index');
 });
 
 app.get('/dashboard', function(req, res){
-      if (req.session && req.session.user){
+      if (sess && sess.user){
         	var options = {
             root: __dirname + '/public/',
             dotfiles: 'deny',
             headers: {
                 'x-timestamp': Date.now(),
                 'x-sent': true,
-                'x-user': req.session.user,
-                'x-role': req.session.role
+                'x-user': sess.user,
+                'x-role': sess.role
             }
           };
 
@@ -95,9 +97,9 @@ app.post('/login', function(req, res){
 	if(verifyUser(url.username, url.password)){
     users.forEach(function(user){
       if(user.name == url.username)
-        req.session.role = user.role;
+        sess.role = user.role;
     });
-    req.session.user = url.username;
+    sess.user = url.username;
     res.redirect('/dashboard');
   }
 	else{
@@ -106,13 +108,18 @@ app.post('/login', function(req, res){
 });
 
 app.get('/logout',function(req, res){
-    var body = "some body";
     res.removeHeader('x-user');
     res.removeHeader('x-sent');
     res.removeHeader('x-role');
     res.removeHeader('x-timestamp');
-    req.session.user = null;
-    res.redirect('/');
+    sess.user = null;
+    req.session.destroy(function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        res.redirect('/');
+      }
+    });
 })
 
 app.get('/balances',function(req, res){
