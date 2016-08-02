@@ -57,7 +57,13 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('./public'));
-app.use(session({secret: 'RANDOM'}));
+app.use(session({
+    secret: 'random',
+    name: 'hola',
+    proxy: true,
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(morgan('combined'));
 
 var sess = {role:undefined, user:undefined};
@@ -108,10 +114,6 @@ app.post('/login', function(req, res){
 });
 
 app.get('/logout',function(req, res){
-    res.removeHeader('x-user');
-    res.removeHeader('x-sent');
-    res.removeHeader('x-role');
-    res.removeHeader('x-timestamp');
     sess.user = null;
     req.session.destroy(function(err) {
       if(err) {
