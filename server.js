@@ -7,6 +7,7 @@ var urlParse = require('url-parse');
 var bodyParser = require('body-parser');
 var pg = require('pg');
 var morgan = require('morgan')
+var uuid = require('uuid');
 
 var session = require('express-session');
 
@@ -58,11 +59,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 app.use(session({
-    secret: 'random',
-    name: 'hola',
-    proxy: true,
-    resave: true,
-    saveUninitialized: true
+    secret: uuid.v1(),
+    name: uuid.v1(),
+    proxy: false,
+    resave: false,
+    saveUninitialized: false
 }));
 app.use(morgan('combined'));
 
