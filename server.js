@@ -106,6 +106,7 @@ app.post('/login', function(req, res){
 });
 
 app.get('/logout',function(req, res){
+    req.cookieName = null;
     req.session.user = null;
     res.redirect('/');
 })
