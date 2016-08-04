@@ -215,19 +215,19 @@ footer {
 /* DASHBOARD ICONS */
 
 .bk-clr-one {
-    background-color: #B9B739;
+    color: #B9B739;
 }
 
 .bk-clr-two {
-    background-color: #F94C4C;
+    color: #F94C4C;
 }
 
 .bk-clr-three {
-    background-color: #119c7e;
+    color: #119c7e;
 }
 
 .bk-clr-four {
-    background-color: #b739b9;
+    color: #b739b9;
 }
 
 .dashboard-div-icon {
@@ -244,10 +244,11 @@ footer {
 }
 
 .dashboard-div-wrapper {
+    border: 1px solid #0000CD;
     border-radius: 5px;
     text-align: center;
     padding: 15px;
-    color: #fff;
+    /*color: #fff;*/
     margin-bottom: 50px;
 }
 
@@ -311,4 +312,14 @@ footer {
 
 .btn-google {
     background-color: #c32f10;
+}
+
+/*OWN STYLE*/
+#company-name:hover {
+    border-color: #2E64FE;
+    background-color: #EFF5FB;
+}
+
+#company-list a {
+    text-decoration: none;
 }
