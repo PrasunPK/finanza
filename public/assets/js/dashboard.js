@@ -10,7 +10,7 @@ var onPageReady = function (argument) {
 	$.get('/companies', function(data){
 		var listOfCompaniesHtml = "";
 		data.forEach(function(company){
-		 listOfCompaniesHtml +=	"<a href=\"/companies/" + company.name + "\" title=\" click here to view \">" 
+		 listOfCompaniesHtml +=	"<a href=\"/companies/" + company.nick_name + "\" title=\" click here to view \">" 
             + "<div class=\"panel panel-primary\" id=\"company-name\">"
             + "<div class=\"panel-body\">" + company.name + "</div>"
             + "</div></a>"

@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var urlParse = require('url-parse');
 var bodyParser = require('body-parser');
 var pg = require('pg');
-var morgan = require('morgan')
 var uuid = require('uuid');
 
 var session = require('express-session');
@@ -65,7 +64,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
-app.use(morgan('combined'));
 
 var sess = {role:undefined, user:undefined};
 
@@ -76,7 +74,6 @@ app.get('/', function(req, res){
 
 app.get('/dashboard', function(req, res){
       if (sess && sess.user){
-        console.log("current session :", sess);
         	var options = {
             root: __dirname + '/public/',
             dotfiles: 'deny',
@@ -138,17 +135,25 @@ app.get('/balances',function(req, res){
 });
 
 app.get('/companies', function(req,res){
-  var query = pool.query('SELECT name, other_detail FROM company_details order by updated_at', function(err, result){ 
-    if(!err)
-      res.send(result.rows);
-    else
-      console.log("error occured");
-  });
+  if(sess.user){
+    var query = pool.query('SELECT name, nick_name, other_detail FROM company_details order by updated_at', function(err, result){ 
+      if(!err)
+        res.send(result.rows);
+      else
+        console.log("error occured");
+    });
+  }else{
+    res.redirect('/');
+  }
 });
 
 app.get('/companies/:company', function(req, res){
-  var companyName = (req.params.company).toLowerCase();
-  res.send({name : companyName});
+  if(sess.user){
+    var companyName = (req.params.company).toLowerCase();
+    res.send({name : companyName});
+  }else{
+    res.redirect('/');
+  }
 });
 
 var server = http.createServer(app);
