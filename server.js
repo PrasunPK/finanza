@@ -137,6 +137,20 @@ app.get('/balances',function(req, res){
   });
 });
 
+app.get('/companies', function(req,res){
+  var query = pool.query('SELECT name, other_detail FROM company_details order by updated_at', function(err, result){ 
+    if(!err)
+      res.send(result.rows);
+    else
+      console.log("error occured");
+  });
+});
+
+app.get('/companies/:company', function(req, res){
+  var companyName = (req.params.company).toLowerCase();
+  res.send({name : companyName});
+});
+
 var server = http.createServer(app);
 server.listen(PORT,IP_ADDRESS);
 console.log("Server started at port : ", PORT);

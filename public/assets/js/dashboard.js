@@ -6,6 +6,18 @@ var onPageReady = function (argument) {
 		$('#total-expenses').html(balances[0].expense  + ' &#x20b9;');
 		$('#yearly-turnover').html(balances[0].turnover  + ' &#x20b9;');
 	});
+
+	$.get('/companies', function(data){
+		var listOfCompaniesHtml = "";
+		data.forEach(function(company){
+		 listOfCompaniesHtml +=	"<a href=\"/companies/" + company.name + "\" title=\" click here to view \">" 
+            + "<div class=\"panel panel-primary\" id=\"company-name\">"
+            + "<div class=\"panel-body\">" + company.name + "</div>"
+            + "</div></a>"
+		});
+		$('#company-list').html(listOfCompaniesHtml);
+	});
+
 	var request = new XMLHttpRequest;
 	request.open('GET', '/header', true);
 	request.onload = function(){
@@ -13,9 +25,6 @@ var onPageReady = function (argument) {
 	  var role= request.getResponseHeader('x-role');
 	  $('#logged-in-user-name').html(username);
 	  $('#role').html(role);
-
-
-	  console.log(username, role);
 	};
 	request.send();
 }
