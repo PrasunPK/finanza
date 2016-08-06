@@ -48,6 +48,15 @@ body {
     margin-bottom: 40px;
 }
 
+.logo-head-line {
+    font-weight: 900;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    color: #F0677C;
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
 .btn {
     border-radius: 0px;
     -webkit-border-radius: 0px;
