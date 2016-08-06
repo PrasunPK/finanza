@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>Company Details</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="assets/js/jquery-3.1.0.min.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/populateCompanyDetails.js"></script>
+     <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <strong>Contact Technical team or Helpdesk</strong>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <!-- HEADER END-->
+    <div class="navbar navbar-inverse set-radius-zero">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                   <h3 class="logo-head-line" style="color:white">Finanza Servizio</h3>
+                </a>
+
+            </div>
+
+
+            <div class="left-div">
+                <div class="user-settings-wrapper">
+                    <ul class="nav">
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-settings">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h4 class="media-heading" id="logged-in-user-name">----</h4>
+                                        <h5 id="role">------</h5>
+
+                                    </div>
+                                </div>
+                                <hr />
+                                <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LOGO HEADER END-->
+    <section class="menu-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="navbar-collapse collapse ">
+                        <ul id="menu-top" class="nav navbar-nav navbar-right">
+                            <li><a href="/dashboard">Dashboard</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+        <div class="container">
+                <div class="panel panel-success">
+                        <div class="panel-heading"> Company Details </div>
+                        <div class="panel-body"> 
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>Company Name</th>
+                                        <td id="company-name"> --- </td>
+                                        <th>Address</th>
+                                        <td id ="address"> ---- </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Propietor</th>
+                                        <td id="propietor-name">---</td>
+                                        <th>Phone</th>
+                                        <td id="phone"> ---- </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panel-body">
+                             <div class="col-md-3 col-sm-3 col-xs-6" data-toggle="modal" data-target="#edit-company-modal">
+                                <div class="dashboard-div-wrapper">
+                                     <h3 class="display-3">Edit Company</h3>
+                                </div>
+                            </div>
+                             <div class="col-md-3 col-sm-3 col-xs-6" data-toggle="modal" data-target="#edit-material-modal">
+                                <div class="dashboard-div-wrapper">
+                                     <h3 class="display-3">Add / Edit Materials</h3>
+                                </div>
+                            </div>
+                             <div class="col-md-3 col-sm-3 col-xs-6" data-toggle="modal" data-target="#add-to-bill-modal">
+                                <div class="dashboard-div-wrapper">
+                                     <h3 class="display-3">Add to Bill</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-6" data-toggle="modal" data-target="#prepare-bill-modal">
+                                <div class="dashboard-div-wrapper">
+                                     <h3 class="display-3">Prepare Bill</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- MODALS FOR DIFFERENT TABS -->
+                        <div class="modal fade" id="edit-company-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="myModalLabel">Edit company</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Company details editable here ..
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="edit-material-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="myModalLabel">Edit material</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Material listed here can be edited
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="add-to-bill-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="myModalLabel">Add to bill</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Material you want to add to the upcoming bill
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="prepare-bill-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="myModalLabel">Prepare bill</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Prepare bill for this company
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MODALS END HERE  -->
+            </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                               Last Generated Bills
+                            </div>
+                            <div class="panel-body">
+                                Summary here  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                               Other Details
+                            </div>
+                            <div class="panel-body">
+                                Other important informations
+
+                            </div>
+                        </div>
+                        </div>
+                </div>
+        </div>
+    </div>
+    <!-- CONTENT-WRAPPER SECTION END-->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    &copy; 2016
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER SECTION END-->
+    <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY SCRIPTS -->
+    <script src="assets/js/jquery-1.11.1.js"></script>
+    <!-- BOOTSTRAP SCRIPTS  -->
+    <script src="assets/js/bootstrap.js"></script>
+</body>
+</html>
