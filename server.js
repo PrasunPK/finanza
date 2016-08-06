@@ -114,7 +114,8 @@ app.post('/login', function(req, res){
     res.redirect('/dashboard');
   }
 	else{
-		res.redirect('/');
+    errorMessage = 'Incorrect username | password';
+		res.redirect('/?error='+errorMessage);
   }
 });
 
@@ -162,7 +163,11 @@ app.get('/companies/:company', function(req, res){
 });
 
 app.get('/detail',function(req, res){
+  if(sess.user){
     res.send();
+  }else{
+    res.redirect('/');
+  }
 });
 
 app.get('/detail/:nickname', function(req, res){
