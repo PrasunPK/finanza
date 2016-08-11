@@ -98,12 +98,49 @@
                             Add Data Here
                         </div>
                         <div class="panel-body">
+                            <div class="panel-body">
                                 <ul class="nav nav-tabs nav-centre">
                                     <li class="active"><a href="#tab1success" data-toggle="tab">Expenses</a></li>
                                     <li><a href="#tab2success" data-toggle="tab">History</a></li>
                                 </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane fade in active" id="tab1success">Expenses</div>
+                            </div>
+                                <div class="tab-pane fade in active" id="tab1success">
+                                    <div class="tab-pane" id="add-expense">
+                                                <div class="input-group input-group-sm">
+                                                    <div class="col-sm-2">
+                                                     <input id="firstname" class="form-control input-group-sm reg_name" type="text" name="firstname" title="Enter first name" placeholder="Date">
+                                                   </div>       
+                                                   <div class="col-sm-2">
+                                                     <input id="lastname" class="form-control input-group-lg reg_name" type="text" name="lastname" title="Enter last name" placeholder="Purpose">
+                                                   </div>
+                                                   <div class="col-sm-2">
+                                                     <div class="dropdown">
+                                                      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Category
+                                                      <span class="caret"></span></button>
+                                                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                                          <li><a tabindex="-1" href="#">Action</a></li>
+                                                          <li><a tabindex="-1" href="#">Another action</a></li>
+                                                          <li><a tabindex="-1" href="#">Something else here</a></li>
+                                                        </ul>
+                                                    </div>
+                                                   </div>
+                                                   <div class="col-sm-2">
+                                                     <input id="lastname" class="form-control input-group-lg reg_name" type="text" name="lastname" title="Enter last name" placeholder="Amount">
+                                                   </div>
+
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-success">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                        </button>
+                                                    </span>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-danger">
+                                                            <i class="glyphicon glyphicon-minus"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                        </div>
+                                </div>
                                 <div class="tab-pane fade" id="tab2success">History</div>
                             </div>
                         </div>
@@ -111,9 +148,6 @@
             </div>
         </div>
     </div>
-
-
-
 
     <!-- CONTENT-WRAPPER SECTION END-->
     <footer>
@@ -126,8 +160,6 @@
             </div>
         </div>
     </footer>
-    <!-- FOOTER SECTION END-->
-    <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- CORE JQUERY SCRIPTS -->
     <script src="assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
