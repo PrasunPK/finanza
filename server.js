@@ -184,6 +184,14 @@ app.get('/detail/:nickname', function(req, res){
   }
 });
 
+app.get('/expense', function(req, res){
+      if (sess && sess.user){
+          readFile('expense.html', res);
+      }else{
+        res.redirect('/');
+      }
+});
+
 app.get('/*', function(req, res){
   res.redirect('/');
 });
