@@ -332,3 +332,7 @@ footer {
 #company-list a {
     text-decoration: none;
 }
+
+.margin-bottom{
+    margin-bottom: 10px;
+}

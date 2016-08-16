@@ -192,6 +192,34 @@ app.get('/expense', function(req, res){
       }
 });
 
+app.get('/expenses', function(req, res){
+  if(sess.user){
+      var query = pool.query('SELECT * FROM stagging.expenses', function(err, result){ 
+        if(!err)
+          res.send(result.rows);
+        else
+          console.log("error occured");
+      });
+    }else{
+      res.redirect('/');
+    }
+});
+
+app.post('/saveExpenses', function(req, res){
+  var reqBody = req.body;
+  console.log(reqBody);
+  // if(sess.user){
+  //     var query = pool.query('INSERT INTO stagging.expenses', function(err, result){ 
+  //       if(!err)
+  //         res.send(result.rows);
+  //       else
+  //         console.log("error occured");
+  //     });
+  //   }else{
+  //     res.redirect('/');
+  //   }
+});
+
 app.get('/*', function(req, res){
   res.redirect('/');
 });
