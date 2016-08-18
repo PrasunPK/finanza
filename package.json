@@ -1,6 +1,6 @@
 {
   "name": "finanza",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "finance app",
   "main": "server.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "migrate-dev": "db-migrate up -e $NODE_ENVIROMENT",
     "migrate-prod": "db-migrate up -e $NODE_ENVIROMENT"
   },
-  "run-script" : {
+  "run-script": {
     "migrate-prod": "db-migrate up -e prod"
   },
   "repository": {
@@ -25,8 +25,6 @@
   "devDependencies": {
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
-    "db-migrate": "^0.10.0-beta.15",
-    "db-migrate-pg": "^0.1.10",
     "express": "^4.14.0",
     "express-session": "^1.14.0",
     "http": "0.0.0",
@@ -34,5 +32,9 @@
     "querystring": "^0.2.0",
     "url-parse": "^1.1.1",
     "uuid": "^2.0.2"
+  },
+  "dependencies": {
+    "db-migrate": "^0.10.0-beta.15",
+    "db-migrate-pg": "^0.1.10"
   }
 }
