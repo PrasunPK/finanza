@@ -1,5 +1,5 @@
 {
-  "dev": {
+  "development": {
     "driver": "pg",
     "user": {"ENV" : "FINANZA_POSTGRESQL_DB_USERNAME"},
     "password": {"ENV" : "FINANZA_POSTGRESQL_DB_PASSWORD"},
@@ -7,7 +7,7 @@
     "database": "finanza",
     "schema": ""
   },
-  "prod": {
+  "production": {
     "driver": "pg",
     "user": {"ENV" : "OPENSHIFT_POSTGRESQL_DB_USERNAME"},
     "password": {"ENV" : "OPENSHIFT_POSTGRESQL_DB_PASSWORD"},
