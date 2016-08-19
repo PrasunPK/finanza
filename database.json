@@ -11,7 +11,7 @@
     "driver": "pg",
     "user": {"ENV" : "OPENSHIFT_POSTGRESQL_DB_USERNAME"},
     "password": {"ENV" : "OPENSHIFT_POSTGRESQL_DB_PASSWORD"},
-    "host": "localhost",
+    "host": {"ENV" : "OPENSHIFT_POSTGRESQL_DB_HOST"},
     "database": "finanza",
     "schema": ""
   }

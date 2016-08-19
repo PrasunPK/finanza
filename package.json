@@ -5,9 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "db-migrate up -e $NODE_ENVIROMENT && node server.js",
-    "migrate-dev": "db-migrate up -e $NODE_ENVIROMENT",
-    "migrate-prod": "db-migrate up -e $NODE_ENVIROMENT"
+    "start": "$MIGRATION_SCRIPT_PATH && node server.js"
   },
   "run-script": {
     "migrate-prod": "db-migrate up -e prod"
