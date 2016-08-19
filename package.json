@@ -7,9 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "$MIGRATION_SCRIPT_PATH && node server.js"
   },
-  "run-script": {
-    "migrate-prod": "db-migrate up -e prod"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/prasunpk/finanza.git"
