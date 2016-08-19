@@ -8,8 +8,15 @@ var bodyParser = require('body-parser');
 var pg = require('pg');
 var uuid = require('uuid');
 var path = require('path');
-
+var exec = require('child_process').exec;
 var session = require('express-session');
+
+exec('$MIGRATION_SCRIPT_PATH', function(error, stdout, stderr) {
+    console.log('stdout: ' + stdout);
+    if (error !== null) {
+        console.log('exec error: ' + error);
+    }
+});
 
 var pool;
 if(process.env.OPENSHIFT_POSTGRESQL_DB_USERNAME && process.env.OPENSHIFT_POSTGRESQL_DB_PASSWORD){
