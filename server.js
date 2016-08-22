@@ -16,6 +16,7 @@ exec('$MIGRATION_SCRIPT_PATH', function(error, stdout, stderr) {
     if (error !== null) {
         console.log('exec error: ' + error);
     }
+    populateUsers();
 });
 
 var pool;
@@ -46,8 +47,6 @@ var populateUsers = function(){
           return console.error('error running query', err);
     });
 }
-populateUsers();
-
 var verifyUser = function (username, password) {
   var authorized = false;
     users.forEach(function(user){

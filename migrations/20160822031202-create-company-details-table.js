@@ -19,7 +19,7 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  var filePath = path.join(__dirname + '/sqls/20160817035945-create-testing-change-of-environment-up.sql');
+  var filePath = path.join(__dirname + '/sqls/20160822031202-create-company-details-table-up.sql');
   return new Promise( function( resolve, reject ) {
     fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
       if (err) return reject(err);
@@ -34,7 +34,7 @@ exports.up = function(db) {
 };
 
 exports.down = function(db) {
-  var filePath = path.join(__dirname + '/sqls/20160817035945-create-testing-change-of-environment-down.sql');
+  var filePath = path.join(__dirname + '/sqls/20160822031202-create-company-details-table-down.sql');
   return new Promise( function( resolve, reject ) {
     fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
       if (err) return reject(err);
