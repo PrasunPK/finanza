@@ -45,7 +45,6 @@ app.get('/', function (req, res) {
 });
 
 app.get('/dashboard', function (req, res) {
-    console.log('came here');
     if (sess && sess.user) {
         readFile('dashboard.html', res);
     } else {
@@ -134,7 +133,6 @@ app.get('/expense', function (req, res) {
 
 app.get('/expenses', function (req, res) {
     if (sess.user) {
-        console.log("CLIENT" + req.getClient());
         res.send(dbManger.getExpenses(req.getClient()));
     } else {
         res.redirect('/');
