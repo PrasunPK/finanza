@@ -9,7 +9,7 @@ var PORT = process.env.OPENSHIFT_NODEJS_PORT || 4040;
 
 var conString;
 if (process.env.OPENSHIFT_POSTGRESQL_DB_USERNAME && process.env.OPENSHIFT_POSTGRESQL_DB_PASSWORD) {
-    conString = 'pg://' + process.env.OPENSHIFT_POSTGRESQL_DB_USERNAME + ':' + process.env.OPENSHIFT_POSTGRESQL_DB_PASSWORD + '@' + process.env.OPENSHIFT_POSTGRESQL_DB_HOST + ':' + process.env.OPENSHIFT_POSTGRESQL_DB_PORT + '/finanza';
+    conString = 'postgres://' + process.env.OPENSHIFT_POSTGRESQL_DB_USERNAME + ':' + process.env.OPENSHIFT_POSTGRESQL_DB_PASSWORD + '@' + process.env.OPENSHIFT_POSTGRESQL_DB_HOST + ':' + process.env.OPENSHIFT_POSTGRESQL_DB_PORT + '/finanza';
 } else {
     conString = 'postgres://' + process.env.FINANZA_POSTGRESQL_DB_USERNAME + ':' + process.env.FINANZA_POSTGRESQL_DB_PASSWORD + '@localhost:5432/finanza';
 }
